@@ -2,9 +2,9 @@ extends Node2D
 
 var window
 var cosmjshelper
-var init_callback = JavaScript.create_callback(self, "initCallback")
-var query_smart_contract_callback = JavaScript.create_callback(self, "querySCCallback")
-var execute_smart_contract_callback = JavaScript.create_callback(self, "executeSCCallback")
+var init_callback = JavaScriptBridge.create_callback(initCallback)
+var query_smart_contract_callback = JavaScriptBridge.create_callback(querySCCallback)
+var execute_smart_contract_callback = JavaScriptBridge.create_callback(executeSCCallback)
 var label
 var walletAddr
 
@@ -12,10 +12,10 @@ var token_info
 
 func _ready():
 	label = $Label
-	window = JavaScript.get_interface("window")
+	window = JavaScriptBridge.get_interface("window")
 	cosmjshelper = window.cosmjshelper
 	
-	var console = JavaScript.get_interface("console")
+	var console = JavaScriptBridge.get_interface("console")
 	if window.keplr:
 		console.log("keplr installed")
 	else:
